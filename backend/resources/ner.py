@@ -1,12 +1,10 @@
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required
 import recognizer
-import sys
+import settings
 
 
 class Ner(Resource):
-    def __init__(self):
-        self.ner_model = recognizer.load_model()
 
     def get(self):
         return {"data": {"Info": "Welcome to NER!!"}}, 200
@@ -21,5 +19,4 @@ class Ner(Resource):
 
         # todo
 
-        print(self.ner_model, file=sys.stderr)
-        return recognizer.recognize(self.ner_model, text)
+        return recognizer.recognize(settings.ner_model, text)

@@ -1,35 +1,25 @@
-from transformers import AutoTokenizer, AutoModelForTokenClassification
 from transformers import pipeline
+from flask import jsonify
+import numpy as np
+import re
 
 
 def preprocess(text):
+    text = text.strip()
+    text = re.sub(' +', ' ', text)
     # todo
-    return text.strip()
+    return text
 
-def recognize(model, text):
+def recognize(ner_model, text):
     processed_text = preprocess(text)
-    # todo
-    return {
-        "processed_text": processed_text,
-        "predictions": [
-            {
-                "entity_group": "PER",
-                "score": 0.9964176416397095,
-                "word": "Clara",
-                "start": 11,
-                "end": 16
-            },
-            {
-                "entity_group": "LOC",
-                "score": 0.9961979985237122,
-                "word": "Berkeley",
-                "start": 31,
-                "end": 39
-            },
-        ]
-    }
-    
+    nlp = pipeline("ner", model=ner_model['model'], tokenizer=ner_model['tokenizer'])
+    ner_results = nlp(processed_text)
 
-def load_model():
-    # todo
-    return "Bert-based model"
+    # Handle error: "Object of type float32 is not JSON serializable"
+    for i in range(len(ner_results)):
+        ner_results[i]['score'] = np.float64(ner_results[i]['score'])
+
+    return jsonify({
+        "processed_text": processed_text,
+        "predictions": ner_results
+    })
