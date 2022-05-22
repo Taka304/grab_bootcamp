@@ -13,36 +13,20 @@ import Header from './components/header';
 import Footer from './components/footer';
 import SignInSignUp from './pages/SignInSignUp/SignInSignUp';
 import MainPage from './pages/MainPage/MainPage';
+import Ent from './pages/ent/Ent'
 
 function App() {
   return (
-    // <div className='pageContainer'>
-    //   <Header />
-    //   <div className='contentWrap'>
-    //     <SignInSignUp />
-    //     {/* <MainPage /> */}
-    //   </div>
-    //   <Footer />
-    // </div>
-
     <Router>
       <div class="h-100">
-        <div class="row px-2 fixed-top">
-          <Header />
-        </div>
-        <div class="pt-2">
-          <div class="row h-100 pt-5">
-            <Routes>
+      <Header />
+        <Routes>
               <Route exact path="/" element={<MainPage />} />
               <Route exact path="/login" element={<SignInSignUp/>} />
               <Route exact path="/signup" element={<SignInSignUp/>} />
-              {/* <Redirect to="/"/> */}
+              <Route exact path="/test" element={<Ent/>} />
             </Routes>
-            <div class="row px-2 fixed-top">
-              <Footer />
-            </div>
-          </div>
-        </div>
+            <Footer />
       </div>
     </Router>
 

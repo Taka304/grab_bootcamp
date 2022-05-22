@@ -95,7 +95,7 @@ function SignInSignUp() {
                 </div>
                 <div className='mb-3'>
                   {/* <label className='labelForm'><span className='star'>*</span>Email Adress"</label> */}
-                  <input type='password' class="form-control" placeholder="Email Adress" onChange={(event) => signupEmail = event.target.value}/>
+                  <input type='email' class="form-control" placeholder="Email Adress" onChange={(event) => signupEmail = event.target.value}/>
                 </div>
                 <div className='mb-3'>
                   {/* <label className='labelForm'><span className='star'>*</span>Password</label> */}
