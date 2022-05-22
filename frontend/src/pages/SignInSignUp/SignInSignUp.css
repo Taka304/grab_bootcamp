@@ -76,7 +76,9 @@
 
 .orLine{
   position:relative;
-  text-align: center
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
 }
 .orLine:before {
   content: "";
@@ -89,7 +91,7 @@
   z-index: 0;
 }
 .orLine span {
-  background: #fff;
+  background: #F2F2F2;
   padding: 0 10px;
   position: relative;
   z-index: 1;
