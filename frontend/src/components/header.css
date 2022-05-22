@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@348&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@348&family=Poppins&family=Prompt&display=swap');
+.bg-green {
+    background-color: #289245;
+}
+
+.navbar-brand-logo {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.container {
+    margin: auto;
+}
+
+.navbar {
+    padding: auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.navbar-brand-title {
+    color: #FFF;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 39px;
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.btn.btn-outline-success-signin {
+    margin-right: 10px;
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #FFF;
+    text-align: center;
+}
+
+.btn.btn-outline-success-signup {
+    margin-right: 10px;
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #FFF;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 20px;
+    background-color: #c4c4c44f;
+    border-color: #C7C7C7;
+}

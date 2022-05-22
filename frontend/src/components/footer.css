@@ -1,0 +1,28 @@
+
+.footer {
+    background-color: #289245;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    color: white;
+    font-size: 25px;
+   }
+
+.team_info{
+    color: #FFF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 39px;
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 10px;
+}
+
+.group_icon{
+    display:inline-flex;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
