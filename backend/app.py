@@ -4,11 +4,11 @@ from flask_restful import Api
 
 from resources.ner import Ner
 import recognizer
+import config
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '4247325b9d110a97fac0a946cdfbcdb9'
-app.config["JWT_SECRET_KEY"] = "grab.bootcamp.ner.demo"
+app.config.from_object(config)
 jwt = JWTManager(app)
 api = Api(app)
 
@@ -18,8 +18,9 @@ def init():
     recognizer.load_model()
 
 
+# RESTful APIs
 api.add_resource(Ner, '/ner')
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=app.config['DEBUG'])
