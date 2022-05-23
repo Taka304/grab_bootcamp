@@ -3,7 +3,7 @@ from flask_jwt_extended import JWTManager
 from flask_restful import Api
 
 from resources.ner import Ner
-import settings
+import recognizer
 
 
 app = Flask(__name__)
@@ -15,7 +15,7 @@ api = Api(app)
 
 @app.before_first_request
 def init():
-    settings.load_model()
+    recognizer.load_model()
 
 
 api.add_resource(Ner, '/ner')

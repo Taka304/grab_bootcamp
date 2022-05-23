@@ -1,7 +1,6 @@
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required
 import recognizer
-import settings
 
 
 class Ner(Resource):
@@ -19,4 +18,4 @@ class Ner(Resource):
 
         # todo
 
-        return recognizer.recognize(settings.ner_model, text)
+        return recognizer.recognize(recognizer.ner_model, text)

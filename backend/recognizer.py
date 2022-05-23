@@ -1,4 +1,4 @@
-from transformers import pipeline
+from transformers import pipeline, AutoTokenizer, AutoModelForTokenClassification
 from flask import jsonify
 import numpy as np
 import re
@@ -23,3 +23,10 @@ def recognize(ner_model, text):
         "processed_text": processed_text,
         "predictions": ner_results
     })
+
+
+def load_model():
+    tokenizer = AutoTokenizer.from_pretrained("dslim/bert-base-NER")
+    model = AutoModelForTokenClassification.from_pretrained("dslim/bert-base-NER")
+    global ner_model
+    ner_model = {"model": model, "tokenizer": tokenizer}
