@@ -15,7 +15,7 @@ body {
 }
 
 .addPad{
-  padding: 30px;
+  padding: 20px;
 }
 
 .wrapper .content{
@@ -24,6 +24,30 @@ body {
 .content p{
   font-size: 15px;
 }
+
+.bg-lightgreen{
+  background-color: #00B14F66;
+}
+
+.text-bg-num{
+  background-color: #999999;
+}
+
+.custom_size {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.custom-button {
+  font-weight: 500;
+  color: white;
+}
+
+.org{
+  background-color: red;
+  border-color: red;
+}
+
 /* .content ul{
   display: flex;
   flex-wrap: wrap;

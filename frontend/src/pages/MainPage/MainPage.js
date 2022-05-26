@@ -12,6 +12,12 @@ function MainPage() {
               </div>
           </div>
           <div className='center addPad' />
+          <div class="container-fluid custom_size bg-lightgreen">
+              <button type="button" class="btn custom-button org">
+                  Organization <span class="badge text-bg-num">4</span>
+              </button>
+              
+          </div>
           <div className='right addMargin'>
               <button type="button" class="btn btn-primary">Update</button>
           </div>
