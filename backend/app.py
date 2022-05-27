@@ -13,9 +13,12 @@ jwt = JWTManager(app)
 api = Api(app)
 
 
-@app.before_first_request
+# @app.before_first_request
 def init():
+    app.logger.info('Load NER model ...')
     recognizer.load_model()
+    app.logger.info('Model loaded.')
+init()
 
 
 # RESTful APIs

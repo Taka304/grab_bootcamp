@@ -1,5 +1,4 @@
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import jwt_required
 import recognizer
 
 
@@ -14,8 +13,5 @@ class Ner(Resource):
                         help='Input text cannot be blank')
         args = parser.parse_args()
 
-        text = args['text']
-
-        # todo
-
-        return recognizer.recognize(recognizer.ner_model, text)
+        text = str(args['text'])
+        return recognizer.recognize(recognizer.ner_model, args['text'])
