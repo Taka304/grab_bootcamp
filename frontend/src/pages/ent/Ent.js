@@ -3,28 +3,18 @@ import { TokenAnnotator } from "react-text-annotate";
 import './Ent.css'
 
 const TAG_COLORS = {
-  ORG: "#00aeff",
-  PER: "#3369e7",
-  LOC: "#8e43e7",
-  DATE: "#b84592",
-  TIME: "#ff4f81",
-  MONEY: "#ff6c5f",
-  PERC: "#ffc168",
-  FAC: "#2dde98",
-  GPE: "#1cc7d0"
+  ORG: "#44c5cb",
+  PER: "#fce315",
+  LOC: "#f53d52",
+  MISC: "#ff9200",
 };
 
 export default function AnnotatorCard({ children }) {
   const tags = [
-    { id: "ORG", label: "ORGANIZATION" },
-    { id: "PER", label: "PERSON" },
-    { id: "LOC", label: "LOCATION" },
-    { id: "DATE", label: "DATE" },
-    { id: "TIME", label: "TIME" },
-    { id: "MONEY", label: "MONEY" },
-    { id: "PERC", label: "PERCENT" },
-    { id: "FAC", label: "FACILITY" },
-    { id: "GPE", label: "GPE" }
+    { id: "ORG", label: "ORGANIZATION", color: "#44c5cb" },
+    { id: "PER", label: "PERSON", color: "#fce315" },
+    { id: "LOC", label: "LOCATION", color: "#f53d52" },
+    { id: "MISC", label: "MISCELLANEOUS", color: "#ff9200" }
   ];
   const TEXT =
     "When Sebastian Thrun started working on self-driving cars at Google in 2007, few people outside of the company took him seriously. “I can tell you very senior CEOs of major American car companies would shake my hand and turn away because I wasn’t worth talking to,” said Thrun, now the co-founder and CEO of online higher education startup Udacity, in an interview with Recode earlier this week. A little less than a decade later, dozens of self-driving startups have cropped up while automakers around the world clamor, wallet in hand, to secure their place in the fast-moving world of fully automated transportation.";
@@ -34,19 +24,19 @@ export default function AnnotatorCard({ children }) {
       start: 1,
       end: 3,
       tag: "PER",
-      color: "#3369e7"
+      color: "#fce315"
     },
     {
       start: 9,
       end: 10,
       tag: "ORG",
-      color: "#00aeff"
+      color: "#44c5cb"
     },
     {
       start: 11,
       end: 12,
-      tag: "TIME",
-      color: "#ff4f81"
+      tag: "MISC",
+      color: "#ff9200"
     }
   ]);
   const [tag, setTag] = useState("PER");
@@ -55,30 +45,9 @@ export default function AnnotatorCard({ children }) {
     setState(value);
   };
 
-  // const handleTagChange = (e) => {
-  //   setTag(e.target.value);
-  // };
-
-  // const delete_ = (start) => {
-  //   const n_state = state.filter((val) => val.start !== start);
-  //   setState(n_state);
-  // };
-
-  // const getButtonStyles = (tag, isActive) => {
-  //   return isActive
-  //     ? {
-  //         button: {
-  //           background: "#ffffff",
-  //           color: TAG_COLORS[tag]
-  //         },
-  //       }
-  //     : {
-  //         button: {
-  //           borderColor: "#ffffff",
-  //           color: "#ffffff"
-  //         },
-  //       };
-  // };
+  const countTag = (label) => {
+    return state.filter((tagWord) => tagWord.tag === label).length;
+  }
 
   const AnnotatedEntity = (props) => {
     console.log(props);
@@ -94,28 +63,33 @@ export default function AnnotatorCard({ children }) {
             color: props.color
           })
         }
-        class = "tags-block"
+        class="tags-block"
         style={{
           background: props.color
         }}
       >
         {props.content}{" "}
-        <span class = "ent-Name">{" "}{props.tag}</span>
+        <span class="ent-Name">{" "}{props.tag}</span>
       </mark>
     );
   };
   return (
     <div className=" d-flex flex-column p-2 ">
-      <div className="d-flex flex-row p-2 addMargin">
+      <div className="d-flex flex-row bg-lightgreen">
         {tags.map((tag_) => (
-          <button 
+          <button
             class={` btn addMargin btn-${tag === tag_.id
-                ? "secondary"
-                : "outline-secondary"
+              ? "light"
+              : "outline-secondary"
               }`}
+            style={{ backgroundColor: tag_.color }}
+
             onClick={() => setTag(tag_.id)}
           >
             {tag_.label}
+
+            <span class="badge text-bg-num addMarginLeft">{countTag(tag_.id)}</span>
+
           </button >
         ))}
       </div>
@@ -133,12 +107,15 @@ export default function AnnotatorCard({ children }) {
           })}
         />
       </div>
-      <div class="card">
+      <div className='right addMargin'>
+        <button type="button" class="btn btn-primary">Update</button>
+      </div>
+      {/* <div class="card">
         <div class="card-body">
           <h4>Output Value</h4>
           <pre>{JSON.stringify(state, null, 2)}</pre>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
