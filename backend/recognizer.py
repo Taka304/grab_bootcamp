@@ -32,11 +32,23 @@ def recognize(ner_model, text):
         "MISC": 0 
     }
 
+    # # support to mark prediction by word index instead of character index
+    # cnt_spaces_before = [0] * len(processed_text)
+    # for i in range(1, len(processed_text)):
+    #     cnt_spaces_before[i] = cnt_spaces_before[i-1]
+    #     if processed_text[i] == ' ':
+    #         cnt_spaces_before[i] += 1
+
     for i in range(len(predictions)):        
         predictions[i]['color'] = colors[predictions[i]['entity_group']]
         entities_count[predictions[i]['entity_group']] += 1
         # Handle error: "Object of type float32 is not JSON serializable"
         predictions[i]['score'] =  np.float64(predictions[i]['score'])
+        # # mark prediction by word index instead of character index
+        # start = cnt_spaces_before[predictions[i]['start']]
+        # end = cnt_spaces_before[predictions[i]['end'] - 1] + 1
+        # predictions[i]['start'] = start
+        # predictions[i]['end'] = end
 
     return jsonify({
         "processed_text": processed_text,
