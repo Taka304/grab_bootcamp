@@ -1,9 +1,12 @@
-from flask_jwt_extended import create_access_token, jwt_required
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity 
+from flask_jwt_extended import jwt_required
 from flask_restful import Resource, reqparse
-from flask import jsonify
+from flask import jsonify, make_response
 from datetime import datetime
 import json, hashlib, re
-from db import users_collection, histories_collection
+from db import users_collection
+from db import histories_collection
 
 
 class Login(Resource):
@@ -28,8 +31,8 @@ class Login(Resource):
                 # create jwt token
                 access_token = create_access_token(identity={'email': user_from_db['email'],
                                                             'username': user_from_db['username']}) 
-                return jsonify(access_token=access_token), 200
-        return jsonify({'msg': 'The email or password is incorrect'})
+                return  make_response(jsonify(access_token=access_token), 200)
+        return  make_response(jsonify({'msg': 'The email or password is incorrect'}), 403)  # Forbidden
 
 
 
@@ -49,19 +52,19 @@ class Register(Resource):
 
         # validation email
         if not re.fullmatch('[^@]+@[^@]+\.[^@]+', new_user['email']):
-            return jsonify({'msg': 'Email is not valid'}), 400
+            return  make_response(jsonify({'msg': 'Email is not valid'}), 401)  # Lacks valid
         # check if email exist
         if users_collection.find_one({"email": new_user["email"]}):
-            return jsonify({'msg': 'Email is already used'}), 400
+            return  make_response(jsonify({'msg': 'Email is already used'}), 409)  # Conflict
 
         # todo: add more constraints checking for password before hashing
         new_user["password"] = hashlib.sha256(new_user["password"].encode("utf-8")).hexdigest()
 
         try:
             users_collection.insert_one(new_user)
-            return jsonify({'msg': 'User created successfully'}), 201
+            return make_response(jsonify({'msg': 'User created successfully'}), 201)
         except:
-            return jsonify({'msg': 'Error in inserting new user'}), 400
+            return make_response(jsonify({'msg': 'Error in creating new user'}), 500)  # server db error
         
 
 class Histories(Resource):
@@ -72,10 +75,15 @@ class Histories(Resource):
         current_user = get_jwt_identity()
         email = current_user['email']
         try:
-            histories = histories_collection.find({'email': email})  
-            return jsonify({'data': histories}), 200
+            data = histories_collection.find({'email': email})
+            histories = list(data)
+            if len(histories):
+                for i in range(len(histories)):
+                    del histories[i]['_id']
+                return make_response(jsonify({'histories': histories}), 200)
+            return make_response(jsonify({'msg': 'Annotations histories not found'}), 404)  # not found
         except:
-            return jsonify({'msg': 'Error in retrieving annotations histories'}), 400
+            return make_response(jsonify({'msg': 'Error in retrieving annotations histories'}), 400)
     
     @jwt_required()
     def post(self):
@@ -93,7 +101,7 @@ class Histories(Resource):
 
         try:
             histories_collection.insert_one(data)
-            return jsonify({'msg': 'Update annotation histories successfully'}), 201
+            return make_response(jsonify({'msg': 'Update annotation histories successfully'}), 201)
         except:
-            return jsonify({'msg': 'Error in inserting new annotation'}), 400
+            return make_response(jsonify({'msg': 'Error in adding annotation to histories'}), 500)
 
