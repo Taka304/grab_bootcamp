@@ -21,6 +21,15 @@ def init():
     app.logger.info('Model loaded.')
 
 
+@app.after_request
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    response.headers.add('Access-Control-Allow-Credentials', "true")
+    return response
+
+
 # RESTful APIs
 api.add_resource(ner.Ner, '/ner')
 api.add_resource(user.Login, '/login')
