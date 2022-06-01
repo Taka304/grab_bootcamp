@@ -1,7 +1,5 @@
 import React from 'react'
 import './SignInSignUp.css';
-// import{useSelector, useDispatch} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
 
 import axios from "axios";
 
@@ -9,8 +7,8 @@ import axios from "axios";
 function SignInSignUp() {
   var loginEmail= "";
   var loginPwd = "";
-  const navigate = useNavigate()
 
+  // login, saving jwt to local storage
   function submitLogin(e) {
       e.preventDefault();
       console.log(loginEmail);
@@ -23,9 +21,7 @@ function SignInSignUp() {
         .then(res => {
             localStorage.setItem("loginEmail", loginEmail);
             localStorage.setItem("token",res.data.access_token);
-            window.location.href = "/";
-            // setAuth(true);
-            
+            window.location.href = "/";         
         })
         .catch(err => {
             alert(err);
@@ -37,6 +33,7 @@ function SignInSignUp() {
   var signupPwd = ""
   var confirmPwd = ""
 
+  // register, not double check password yet
   function register(e) {
       e.preventDefault();
       console.log(username);
@@ -75,11 +72,9 @@ function SignInSignUp() {
                   <p className='headerFont'>Sign in to your account</p>
                 </div>
                 <div className='mb-3'>
-                  {/* <label className='labelForm' ><span className='star'>*</span>Email Adress</label> */}
                   <input type='text' class="form-control" placeholder="Email Adress"  onChange={(event) => loginEmail = event.target.value} />
                 </div>
                 <div className='mb-3'>
-                  {/* <label className='labelForm'><span className='star'>*</span>Password</label> */}
                   <input type='password' class="form-control" placeholder="Password" onChange={(event) => loginPwd = event.target.value}/>
                 </div>
                 <div className='center'>
@@ -91,7 +86,6 @@ function SignInSignUp() {
               </div>
             </div>
           </div>
-
           <div class="col">
             <div className='logInOutContainer'>
               <form method="post">
@@ -99,19 +93,15 @@ function SignInSignUp() {
                   <p className='headerFont'>Create Account</p>
                 </div>
                 <div className='mb-3'>
-                  {/* <label className='labelForm' ><span className='star'>*</span>Username</label> */}
                   <input type='text' class="form-control" placeholder="Username" onChange={(event) => username = event.target.value}/>
                 </div>
                 <div className='mb-3'>
-                  {/* <label className='labelForm'><span className='star'>*</span>Email Adress"</label> */}
                   <input type='email' class="form-control" placeholder="Email Adress" onChange={(event) => signupEmail = event.target.value}/>
                 </div>
                 <div className='mb-3'>
-                  {/* <label className='labelForm'><span className='star'>*</span>Password</label> */}
                   <input type='password' class="form-control" placeholder="Password" onChange={(event) => signupPwd = event.target.value}/>
                 </div>
                 <div className='mb-3'>
-                  {/* <label className='labelForm'><span className='star'>*</span>Confirm Password</label> */}
                   <input type='password' class="form-control" placeholder="Confirm Password" onChange={(event) => confirmPwd = event.target.value}/>
                 </div>
                 <div className='center'>

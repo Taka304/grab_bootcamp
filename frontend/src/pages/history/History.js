@@ -7,6 +7,7 @@ import './History.css';
 
 function History() {
   const [log, setLog] = useState([])
+  // get history, must have jwt
   useEffect(() => {
     async function fetchData() {
       axios.get('/histories', {
@@ -20,6 +21,7 @@ function History() {
     fetchData()
   }, [])
 
+  // self-define annotated entities in history
   const AnnotatedEntity = (props) => {
     console.log(props);
     return (
@@ -58,16 +60,19 @@ function History() {
             </tr>
           </thead>
           <tbody>
+            {/* Map by json values in array */}
             {Object.values(log).map((row) => (
               <tr>
                 <td>{row.time}</td>
                 <td>
+                  {/* annotate entity by model, cant be changed */}
                   <TokenAnnotator
                     tokens={row.processed_text.split(" ")}
                     value={row.model_predicted}
                     renderMark={AnnotatedEntity}
                   /></td>
                 <td>
+                   {/* annotate entity by user, cant be changed */}
                   <TokenAnnotator
                     tokens={row.processed_text.split(" ")}
                     value={row.user_annotated}

@@ -2,8 +2,6 @@ import React from 'react'
 import './MainPage.css';
 import { useState } from "react";
 import { TokenAnnotator } from "react-text-annotate";
-
-// import Ent from '../ent/Ent';
 import axios from "axios";
 
 
@@ -20,6 +18,7 @@ export default function MainPage({ children }) {
         text: '',
         predicted_text: []
     })
+    // submit text and send, get response prediction and processed text and set state
     const submit = () => {
         axios({
             method: "POST",
@@ -35,6 +34,7 @@ export default function MainPage({ children }) {
         })
 
     }
+    // update when clicked button, must have jwt
     const update = () => {
         axios({
             method: "POST",
@@ -58,6 +58,7 @@ export default function MainPage({ children }) {
         setTxt(event.target.value);
     }
 
+    // tags for new annotate text
     const tags = [
         { id: "ORG", label: "ORGANIZATION", color: "#44c5cb" },
         { id: "PER", label: "PERSON", color: "#fce315" },
@@ -65,41 +66,24 @@ export default function MainPage({ children }) {
         { id: "MISC", label: "MISCELLANEOUS", color: "#ff9200" }
     ];
 
-    // const [TEXT,setProcessTxt] = useState(txt)
     // "When Sebastian Thrun started working on self-driving cars at Google in 2007, few people outside of the company took him seriously. “I can tell you very senior CEOs of major American car companies would shake my hand and turn away because I wasn’t worth talking to,” said Thrun, now the co-founder and CEO of online higher education startup Udacity, in an interview with Recode earlier this week. A little less than a decade later, dozens of self-driving startups have cropped up while automakers around the world clamor, wallet in hand, to secure their place in the fast-moving world of fully automated transportation.";
 
     const TEXT = prop.text
-    const [state, setState] = useState([
-        // {
-        //     start: 1,
-        //     end: 3,
-        //     entity_group: "PER",
-        //     color: "#fce315"
-        // },
-        // {
-        //     start: 9,
-        //     end: 10,
-        //     entity_group: "ORG",
-        //     color: "#44c5cb"
-        // },
-        // {
-        //     start: 11,
-        //     end: 12,
-        //     entity_group: "MISC",
-        //     color: "#ff9200"
-        // }
-        // prop.entities
-    ]);
+    const [state, setState] = useState([]);
+    
+    // auto button "Person"
     const [entity_group, setTag] = useState("PER");
 
     const handleChange = (value) => {
         setState(value);
     };
 
+    // count tags after each edit
     const countTag = (label) => {
         return state.filter((tagWord) => tagWord.entity_group === label).length;
     }
 
+    // define entities' params and style
     const AnnotatedEntity = (props) => {
         console.log(props);
         return (
@@ -130,7 +114,6 @@ export default function MainPage({ children }) {
             <div className='container-fluid custom_size' />
             <div class="mb-3">
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Input text here..." onChange={handleInputChange} ></textarea>
-                {/* <input class="form-control" id="exampleFormControlTextarea1" rows="7" onChange = {(event)=>setTxt(event.value)}></input> */}
                 <div className='right addMargin'>
                     <button type="button" class="btn btn-primary" onClick={submit}>Submit</button>
                 </div>
@@ -139,6 +122,7 @@ export default function MainPage({ children }) {
             <div class="container-fluid custom_size ">
                 <div className=" d-flex flex-column">
                     <div className="d-flex flex-row bg-lightgreen">
+                        {/* Map tags button, clicked buttons will have different style */}
                         {tags.map((tag_) => (
                             <button
                                 class={` btn addMargin btn-${entity_group === tag_.id
@@ -157,6 +141,10 @@ export default function MainPage({ children }) {
                         ))}
                     </div>
                     <div class="card">
+                        {/* split text, value will get model's entities, 
+                        can be changed by click, 
+                        have self define style by renderMark,
+                        new tag will be updated by getSpan */}
                         <TokenAnnotator
                             class="card-body"
                             tokens={TEXT.split(" ")}
@@ -174,10 +162,10 @@ export default function MainPage({ children }) {
                         <button type="button" class="btn btn-primary" onClick={update}>Update</button>
                     </div>
                     <div class="card">
-        <div class="card-body">
+        {/* <div class="card-body">
           <h4>Output Value</h4>
           <pre>{JSON.stringify(state, null, 2)}</pre>
-        </div>
+        </div> */}
       </div>
                 </div>
             </div>
