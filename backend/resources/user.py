@@ -31,8 +31,11 @@ class Login(Resource):
                 # create jwt token
                 access_token = create_access_token(identity={'email': user_from_db['email'],
                                                             'username': user_from_db['username']}) 
-                return  make_response(jsonify(access_token=access_token), 200)
-        return  make_response('The email or password is incorrect', 403)  # Forbidden
+                return  make_response(jsonify({
+                    'username': user_from_db['username'],
+                    'access_token': access_token
+                    }), 200)
+        return  make_response(jsonify({'msg': 'The email or password is incorrect'}), 403)  # Forbidden
 
 
 
@@ -62,9 +65,9 @@ class Register(Resource):
 
         try:
             users_collection.insert_one(new_user)
-            return make_response('User created successfully', 201)
+            return make_response(jsonify({'msg': 'User created successfully'}), 201)
         except:
-            return make_response('Error in creating new user', 500)  # server db error
+            return make_response(jsonify({'msg': 'Error in creating new user'}), 500)  # server db error
         
 
 class Histories(Resource):
@@ -82,16 +85,16 @@ class Histories(Resource):
                     del histories[i]['_id']
                     del histories[i]['email']
                 return make_response(jsonify({'histories': histories}), 200)
-            return make_response('Annotations histories not found', 404)  # not found
+            return make_response(jsonify({'msg': 'Annotations histories not found'}), 404)  # not found
         except:
-            return make_response('Error in retrieving annotations histories', 400)
+            return make_response(jsonify({'msg': 'Error in retrieving annotations histories'}), 400)
     
     @jwt_required()
     def post(self):
         ''' Add annotation to histories '''
         data = request.get_json()
         if not all (k in data.keys() for k in ('model_predicted', 'user_annotated')):
-            return make_response("'model_predicted' or 'user_annotated' is missing", 201)
+            return make_response(jsonify({'msg': "'model_predicted' or 'user_annotated' is missing"}), 201)
 
         current_user = get_jwt_identity()
         data['time'] = datetime.now()
@@ -99,7 +102,7 @@ class Histories(Resource):
 
         try:
             histories_collection.insert_one(data)
-            return make_response('Update annotation histories successfully', 201)
+            return make_response(jsonify({'msg': 'Update annotation histories successfully'}), 201)
         except:
-            return make_response('Error in adding annotation to histories', 500)
+            return make_response(jsonify({'msg': 'Error in adding annotation to histories'}), 500)
 
