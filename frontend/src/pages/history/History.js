@@ -12,10 +12,10 @@ function History() {
     async function fetchData() {
       axios.get('/histories', {
         headers: { Authorization: 'Bearer ' + localStorage.getItem("token") }
-
       }).then((res) => {
-        console.log(res.data.histories);
         setLog(res.data.histories);
+      }).catch((err) =>{
+        alert(err.response.data.msg)
       })
     }
     fetchData()
@@ -51,8 +51,8 @@ function History() {
         Annotation histories
       </h3>
       <div class='container table-responsive'>
-        <table class="table">
-          <thead class="table-dark">
+        <table class="table sticky">
+          <thead>
             <tr>
               <th scope="col">Time</th>
               <th scope="col">Result from model</th>
@@ -63,7 +63,7 @@ function History() {
             {/* Map by json values in array */}
             {Object.values(log).map((row) => (
               <tr>
-                <td>{row.time}</td>
+                <td >{row.time}</td>
                 <td>
                   {/* annotate entity by model, cant be changed */}
                   <TokenAnnotator

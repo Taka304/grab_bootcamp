@@ -55,10 +55,10 @@ class Register(Resource):
 
         # validation email
         if not re.fullmatch('[^@]+@[^@]+\.[^@]+', new_user['email']):
-            return  make_response('Email is not valid', 401)  # Lacks valid
+            return  make_response(jsonify({'msg': 'Email is not valid'}), 401)  # Lacks valid
         # check if email exist
         if users_collection.find_one({"email": new_user["email"]}):
-            return  make_response('Email is already used', 409)  # Conflict
+            return  make_response(jsonify({'msg': 'Email is already used'}), 409)  # Conflict
 
         # todo: add more constraints checking for password before hashing
         new_user["password"] = hashlib.sha256(new_user["password"].encode("utf-8")).hexdigest()

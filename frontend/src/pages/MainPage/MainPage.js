@@ -45,11 +45,13 @@ export default function MainPage({ children }) {
                 user_annotated: state, 
                 processed_text: prop.text
              }
-        }).then((respone) => {
-            alert("updated");
+        }).then((res) => {
+            // alert();
+            alert(res.data.msg)
         })
         .catch(err => {
-            alert(err);
+            alert("Update failed, please login first");
+            window.location.href = "/login";
         })
     }
 
@@ -161,12 +163,6 @@ export default function MainPage({ children }) {
                     <div className='right addMargin'>
                         <button type="button" class="btn btn-primary" onClick={update}>Update</button>
                     </div>
-                    <div class="card">
-        {/* <div class="card-body">
-          <h4>Output Value</h4>
-          <pre>{JSON.stringify(state, null, 2)}</pre>
-        </div> */}
-      </div>
                 </div>
             </div>
         </div>

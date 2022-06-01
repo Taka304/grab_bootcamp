@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './header.css'
 import { Link } from 'react-router-dom'
 import grab from '../images/grab-2.svg'
-import axios from "axios";
 
 
 function Header(props) {
@@ -13,21 +12,6 @@ function Header(props) {
     }
 
     var log = localStorage.getItem("username")
-
-    // // get name from history route (gonna fix this later)
-    // useEffect(() => {
-    //     // for prevent loop fetch
-    //     async function fetchName() {
-    //         axios.get('/histories', {
-    //             headers: { Authorization: 'Bearer ' + localStorage.getItem("token") }
-    //         }).then((res) => {
-    //             setLog(res.data.username);
-    //             console.log(log);
-    //         })
-    //     }
-    //     fetchName()
-    // }, [])
-
 
     if (!log) {
         return (
