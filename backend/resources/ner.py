@@ -1,17 +1,14 @@
 from flask_restful import Resource, reqparse
+from app import ner_model
 import recognizer
 
 
 class Ner(Resource):
-
-    def get(self):
-        return {"data": {"Info": "Welcome to NER!!"}}, 200
+    parser = reqparse.RequestParser()
+    parser.add_argument('text', type=str, required=True,
+                        help='Input text cannot be blank')
 
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('text', type=str, required=True,
-                        help='Input text cannot be blank')
-        args = parser.parse_args()
-
+        args = Ner.parser.parse_args()
         text = str(args['text'])
-        return recognizer.recognize(recognizer.ner_model, args['text'])
+        return recognizer.recognize(ner_model, args['text'])

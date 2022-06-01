@@ -58,5 +58,5 @@ def load_model():
     # transformers.file_utils.default_cache_path
     tokenizer = AutoTokenizer.from_pretrained("dslim/bert-base-NER")
     model = AutoModelForTokenClassification.from_pretrained("dslim/bert-base-NER")
-    global ner_model
     ner_model = {"model": model, "tokenizer": tokenizer}
+    return ner_model

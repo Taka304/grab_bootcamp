@@ -10,7 +10,7 @@ pip install -r requirements.txt
 
 ## **Run the server**
 ``` 
-python app.py 
+python run.py 
 ```
 
 ## **Get NER prediction from text**
@@ -150,7 +150,8 @@ Request: **POST**: [/histories]()
         },
         ...
     ],
-    "model_predicted": <same format as user_annotated>
+    "model_predicted": <same format as user_annotated>,
+    "processed_text": <str>
 }
 ```
 
