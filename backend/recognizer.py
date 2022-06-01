@@ -2,6 +2,7 @@ from transformers import pipeline, AutoTokenizer, AutoModelForTokenClassificatio
 from flask import jsonify
 import numpy as np
 import re
+import config
 
 
 def preprocess(text):
@@ -17,12 +18,7 @@ def recognize(ner_model, text):
                     aggregation_strategy="first")
     predictions = nlp(processed_text)
 
-    colors = {
-        'ORG': "#00aeff",
-        'PER': "#3369e7",
-        'LOC': "#8e43e7",
-        'MISC': "#b84592",
-    }
+    colors = config.ENTITY_COLORS
     
     # count prediction for each entities
     entities_count = {
