@@ -6,10 +6,10 @@ import axios from "axios";
 
 
 const TAG_COLORS = {
-    ORG: "#44c5cb",
-    PER: "#fce315",
-    LOC: "#f53d52",
-    MISC: "#ff9200",
+    ORG: "#FF8125",
+    PER: "#00D1FF",
+    LOC: "#FFC800",
+    MISC: "#FF5959",
 };
 
 export default function MainPage({ children }) {
@@ -60,10 +60,10 @@ export default function MainPage({ children }) {
 
     // tags for new annotate text
     const tags = [
-        { id: "ORG", label: "ORGANIZATION", color: "#44c5cb" },
-        { id: "PER", label: "PERSON", color: "#fce315" },
-        { id: "LOC", label: "LOCATION", color: "#f53d52" },
-        { id: "MISC", label: "MISCELLANEOUS", color: "#ff9200" }
+        { id: "ORG", label: "ORGANIZATION", color: "#FF8125" },
+        { id: "PER", label: "PERSON", color: "#00D1FF" },
+        { id: "LOC", label: "LOCATION", color: "#FFC800" },
+        { id: "MISC", label: "MISCELLANEOUS", color: "#FF5959" }
     ];
 
     // "When Sebastian Thrun started working on self-driving cars at Google in 2007, few people outside of the company took him seriously. “I can tell you very senior CEOs of major American car companies would shake my hand and turn away because I wasn’t worth talking to,” said Thrun, now the co-founder and CEO of online higher education startup Udacity, in an interview with Recode earlier this week. A little less than a decade later, dozens of self-driving startups have cropped up while automakers around the world clamor, wallet in hand, to secure their place in the fast-moving world of fully automated transportation.";

@@ -10,5 +10,5 @@ ENTITY_COLORS = {
     'ORG': "#FF8125",
     'PER': "#00D1FF",
     'LOC': "#FFC800",
-    'MISC': "#FFC800",
+    'MISC': "#FF5959",
 }
