@@ -19,7 +19,8 @@ function SignInSignUp() {
             password: loginPwd
         })
         .then(res => {
-            localStorage.setItem("loginEmail", loginEmail);
+
+            localStorage.setItem("username", res.data.username);
             localStorage.setItem("token",res.data.access_token);
             window.location.href = "/";         
         })
