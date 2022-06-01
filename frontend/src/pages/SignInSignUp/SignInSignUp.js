@@ -1,29 +1,35 @@
 import React from 'react'
 import './SignInSignUp.css';
-// import axios from "axios";
+// import{useSelector, useDispatch} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 
+import axios from "axios";
 
 
 function SignInSignUp() {
   var loginEmail= "";
   var loginPwd = "";
+  const navigate = useNavigate()
 
   function submitLogin(e) {
       e.preventDefault();
       console.log(loginEmail);
       console.log(loginPwd);
-      // axios.post("/user/authenticate", 
-      //   {
-      //       userName: loginEmail,
-      //       password: loginPwd
-      //   })
-      //   .then(res => {
-      //       localStorage.setItem("loginEmail", loginEmail);
-      //       setAuth(true);
-      //   })
-      //   .catch(err => {
-      //       alert(err);
-      //   })
+      axios.post("/login", 
+        {
+            email: loginEmail,
+            password: loginPwd
+        })
+        .then(res => {
+            localStorage.setItem("loginEmail", loginEmail);
+            localStorage.setItem("token",res.data.access_token);
+            window.location.href = "/";
+            // setAuth(true);
+            
+        })
+        .catch(err => {
+            alert(err);
+        })
   }
 
   var username = ""
@@ -33,20 +39,23 @@ function SignInSignUp() {
 
   function register(e) {
       e.preventDefault();
-      // axios.post("/user/add-user", 
-      // {
-      //     userName: username,
-      //     email: signupEmail,
-      //     password: signupPwd,
-
-      // })
-      // .then(res => {
-      //     alert("Sign Up Successful");
-      //     window.location.href = "/login";
-      // })
-      // .catch(err => {
-      //     alert(err);
-      // })
+      console.log(username);
+      console.log(signupEmail);
+      console.log(signupPwd);
+      console.log(confirmPwd);
+      axios.post("/register", 
+      {
+          username: username,
+          email: signupEmail,
+          password: signupPwd,
+      })
+      .then(res => {
+          alert("Sign Up Successful");
+          window.location.href = "/login";
+      })
+      .catch(err => {
+          alert(err);
+      })
     }
   return (
     

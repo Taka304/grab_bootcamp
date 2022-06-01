@@ -13,7 +13,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import SignInSignUp from './pages/SignInSignUp/SignInSignUp';
 import MainPage from './pages/MainPage/MainPage';
-import Ent from './pages/ent/Ent'
+import History from './pages/history/History'
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
               <Route exact path="/" element={<MainPage />} />
               <Route exact path="/login" element={<SignInSignUp/>} />
               <Route exact path="/signup" element={<SignInSignUp/>} />
-              <Route exact path="/test" element={<Ent/>} />
+              <Route exact path="/history" element={<History/>} />
             </Routes>
             <Footer />
       </div>

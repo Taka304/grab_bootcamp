@@ -1,0 +1,19 @@
+.container{
+    padding: 10px;
+}
+
+.overflow-auto{
+    max-height : 300px;
+overflow-y: auto;
+}
+
+.table-responsive {
+    max-height:600px;
+    box-shadow: 30px;
+}
+
+thead tr th {
+    position:sticky;
+    top:0;
+    background-color: black;
+  }

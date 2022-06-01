@@ -36,17 +36,54 @@ body {
 .custom_size {
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .custom-button {
   font-weight: 500;
   color: white;
 }
-/* 
-.mb-3{
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 18px;
-  padding-right: 18px;
-} */
+.addMargin{
+  margin: 6px;
+}
 
+.addMarginLeft{
+  margin-left: 6px;
+}
+
+.tags-block{
+  padding: .2em .3em;
+  margin: 0 .25em;
+  line-height: 1;
+  display: inline-block;
+  border-radius: 0.25em;
+}
+
+.ent-Name{
+  box-sizing: border-box;
+  content: attr(data-entity);
+  font-size: .55em;
+  line-height: 1;
+  padding: .35em .35em;
+  border-radius: .35em;
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0.15em 0.15em;
+  background: #fff;
+  font-weight: 7000;
+}
+.btn-light{
+  font-weight: 500;
+}
+
+.btn-outline-secondary{
+  opacity: 50%;
+  color: black;
+  font-weight: 450;
+}
+
+.bg-lightgreen{
+  background-color: #6abe90c5;
+}
