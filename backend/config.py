@@ -12,3 +12,5 @@ ENTITY_COLORS = {
     'LOC': "#FFC800",
     'MISC': "#FF5959",
 }
+MODEL_DIR = 'dslim/bert-base-NER'  # 'model/'
+TOKENIZER_DIR = 'dslim/bert-base-NER'

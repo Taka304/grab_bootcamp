@@ -56,7 +56,7 @@ def recognize(ner_model, text):
 def load_model():
     # In default, models will be stored in cache:
     # transformers.file_utils.default_cache_path
-    tokenizer = AutoTokenizer.from_pretrained("dslim/bert-base-NER")
-    model = AutoModelForTokenClassification.from_pretrained("dslim/bert-base-NER")
+    tokenizer = AutoTokenizer.from_pretrained(config.TOKENIZER_DIR)
+    model = AutoModelForTokenClassification.from_pretrained(config.MODEL_DIR)
     ner_model = {"model": model, "tokenizer": tokenizer}
     return ner_model
