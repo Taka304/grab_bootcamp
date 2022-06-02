@@ -10,9 +10,7 @@ function SignInSignUp() {
 
   // login, saving jwt to local storage
   function submitLogin(e) {
-    e.preventDefault();
-    console.log(loginEmail);
-    console.log(loginPwd);
+    e.preventDefault(); 
     axios.post("/login",
       {
         email: loginEmail,
@@ -33,13 +31,12 @@ function SignInSignUp() {
   var signupPwd = ""
   var confirmPwd = ""
 
-  // register, not double check password yet
+  // register, double check password 
   function register(e) {
     e.preventDefault();
-    console.log(username);
-    console.log(signupEmail);
-    console.log(signupPwd);
-    console.log(confirmPwd);
+    if (signupPwd != confirmPwd) {
+      window.alert("The passwords do not match")
+    } else {
     axios.post("/register",
       {
         username: username,
@@ -53,8 +50,9 @@ function SignInSignUp() {
       })
       .catch(err => {
         console.log(err)
-        alert(err.response.data);
+        alert(err.response.data.msg);
       })
+    }
   }
   return (
 
