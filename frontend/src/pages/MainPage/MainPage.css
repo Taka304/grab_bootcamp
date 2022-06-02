@@ -15,7 +15,7 @@ body {
 }
 
 .addPad{
-  padding: 30px;
+  padding: 20px;
 }
 
 .wrapper .content{
@@ -24,42 +24,66 @@ body {
 .content p{
   font-size: 15px;
 }
-/* .content ul{
-  display: flex;
-  flex-wrap: wrap;
-  padding: 7px;
-  margin: 12px 0;
-  border-radius: 5px;
-  border: 1px solid #a6a6a6;
-}
-.content ul  li{
-  color: #333;
-  margin: 4px 3px;
-  list-style: none;
-  border-radius: 5px;
-  background: #F2F2F2;
-  padding: 5px 8px 5px 10px;
-  border: 1px solid #e3e1e1;
-}
-.content ul li i{
-  height: 20px;
-  width: 20px;
-  color: #808080;
-  margin-left: 8px;
-  font-size: 12px;
-  cursor: pointer;
-  border-radius: 50%;
-  background: #dfdfdf;
-  justify-content: center;
-}
-.content ul input{
-  flex: 1;
-  padding: 5px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-}
-.wrapper .details{
-  justify-content: space-between;
-} */
 
+.bg-lightgreen{
+  background-color: #00B14F66;
+}
+
+.text-bg-num{
+  background-color: #999999;
+}
+
+.custom_size {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.custom-button {
+  font-weight: 500;
+  color: white;
+}
+.addMargin{
+  margin: 6px;
+}
+
+.addMarginLeft{
+  margin-left: 6px;
+}
+
+.tags-block{
+  padding: .2em .3em;
+  margin: 0 .25em;
+  line-height: 1;
+  display: inline-block;
+  border-radius: 0.25em;
+}
+
+.ent-Name{
+  box-sizing: border-box;
+  content: attr(data-entity);
+  font-size: .55em;
+  line-height: 1;
+  padding: .35em .35em;
+  border-radius: .35em;
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0.15em 0.15em;
+  background: #fff;
+  font-weight: 7000;
+}
+.btn-light{
+  font-weight: 500;
+}
+
+.btn-outline-secondary{
+  opacity: 50%;
+  color: black;
+  font-weight: 450;
+}
+
+.bg-lightgreen{
+  background-color: #6abe90c5;
+}

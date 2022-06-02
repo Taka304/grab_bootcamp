@@ -1,0 +1,8 @@
+tqdm
+numpy
+flask
+pymongo
+flask-cors
+flask-restful
+flask-jwt-extended
+transformers[torch]

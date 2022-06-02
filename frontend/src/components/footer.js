@@ -1,6 +1,9 @@
 import React from 'react';
 import './footer.css'
-import tmp_icon from '../images/tmp_icon.jpg'
+import lam from '../images/lam.png'
+import hieu from '../images/hieu.jpg'
+import hung from '../images/hung.jpg'
+
 
 function Footer() {
     return (
@@ -9,13 +12,13 @@ function Footer() {
         <div className='group_icon'>
           <div class="row">
             <div class="col-md-4">
-              <img class="rounded-circle" alt="" src={tmp_icon} width="35" height="35" />
+              <img class="rounded-circle" alt="" src={hieu} width="35" height="35" />
             </div>
             <div class="col-md-4">
-              <img class="rounded-circle" alt="" src={tmp_icon} width="35" height="35" />
+              <img class="rounded-circle" alt="" src={lam} width="35" height="35" />
             </div>
             <div class="col-md-4">
-              <img class="rounded-circle" alt="" src={tmp_icon} width="35" height="35" />
+              <img class="rounded-circle" alt="" src={hung} width="35" height="35" />
             </div>
           </div>
         </div>

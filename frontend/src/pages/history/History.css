@@ -1,0 +1,45 @@
+.container{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* .overflow-auto{
+    max-height : 300px;
+overflow-y: auto;
+} */
+
+/* .table-responsive {
+    max-height:600px;
+    box-shadow: 30px;
+}
+
+.custom-bg{
+    background-color: #20863b;
+    color: aliceblue;
+    border-bottom: 0cm;
+    position: sticky;
+}
+
+.table-responsive tr{
+    position: sticky;
+} */
+
+.table th{
+    background-color: #20863b;
+    color: aliceblue;
+    border-color: black;
+    border: 10px;
+}
+
+.table.sticky th{
+    position: sticky;
+    top:0;
+}
+
+.table-responsive {
+    max-height:600px;
+    
+}
+.table>:not(:first-child){
+    border-top:0
+}
