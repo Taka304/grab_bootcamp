@@ -167,3 +167,10 @@ or
 ```
 'Error in adding annotation to histories', 500
 ```
+
+## **Server side custom training with annotations histories**
+```
+python train.py --hours <number of hours to get histories data> \
+                --epoch <number of epoch, default is 3>
+```
+The trained model is saved in 'model/' by default config
