@@ -1,9 +1,8 @@
+tqdm
+numpy
 flask
-mongoengine
-flask-mongoengine
+pymongo
+flask-cors
 flask-restful
 flask-jwt-extended
-flask-bcrypt
-flask-login
-flask-session
 transformers[torch]
