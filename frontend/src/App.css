@@ -2,6 +2,9 @@
   padding: 0px !important;
 }
 
+.content-container {
+  min-height: calc(100vh - 10px);
+}
 
 .row .h-100 .p-0{
   position: absolute !important;

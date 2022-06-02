@@ -6,7 +6,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-
 } from "react-router-dom";
 
 import Header from './components/header';
@@ -19,14 +18,16 @@ function App() {
   return (
     <Router>
       <div class="h-100">
-      <Header />
-        <Routes>
-              <Route exact path="/" element={<MainPage />} />
-              <Route exact path="/login" element={<SignInSignUp/>} />
-              <Route exact path="/signup" element={<SignInSignUp/>} />
-              <Route exact path="/history" element={<History/>} />
-            </Routes>
-            <Footer />
+        <Header />
+        <div className="content-container">
+          <Routes>
+            <Route exact path="/" element={<MainPage />} />
+            <Route exact path="/login" element={<SignInSignUp />} />
+            <Route exact path="/signup" element={<SignInSignUp />} />
+            <Route exact path="/history" element={<History />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
     </Router>
 

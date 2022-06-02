@@ -1,6 +1,6 @@
 .container{
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 /* .overflow-auto{
@@ -42,4 +42,8 @@ overflow-y: auto;
 }
 .table>:not(:first-child){
     border-top:0
+}
+
+.container-fluid{
+    padding: 0px;
 }

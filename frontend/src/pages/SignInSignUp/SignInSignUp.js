@@ -22,6 +22,7 @@ function SignInSignUp() {
         window.location.href = "/";
       })
       .catch(err => {
+        console.log(err)
         alert(err.response.data.msg);
       })
   }
@@ -44,12 +45,10 @@ function SignInSignUp() {
         password: signupPwd,
       })
       .then(res => {
-        console.log(res)
         alert(res.data.msg);
         window.location.href = "/login";
       })
       .catch(err => {
-        console.log(err)
         alert(err.response.data.msg);
       })
     }

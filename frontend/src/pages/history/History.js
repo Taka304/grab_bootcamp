@@ -47,10 +47,13 @@ function History() {
   return (
     <div>
       <div class="col pt-4">
+      {/* <h3 class="container-fluid">
+        Annotation histories
+      </h3> */}
+      <div class='container table-responsive'>
       <h3 class="container-fluid">
         Annotation histories
       </h3>
-      <div class='container table-responsive'>
         <table class="table sticky">
           <thead>
             <tr>
